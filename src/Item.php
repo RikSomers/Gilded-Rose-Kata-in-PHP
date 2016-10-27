@@ -4,19 +4,17 @@
  * @author Rik Somers <git@riksomers.nl>
  * Created at : 4-5-2016
  */
-
 namespace App;
-
 
 class Item
 {
     /**
-     * The maximum quality of an item
+     * The maximum quality of an item.
      */
     const MaxQuality = 50;
 
     /**
-     * The minimum quality of an item
+     * The minimum quality of an item.
      */
     const MinQuality = 0;
 
@@ -43,28 +41,27 @@ class Item
     }
 
     /**
-     * Updates values in a tick
+     * Updates values in a tick.
      */
     protected function tick()
     {
         $this->changeSellInBy(-1);
     }
 
-
     /**
-     * Gaurds whether the quality is above the maximum quality, or below the minimum quality
+     * Gaurds whether the quality is above the maximum quality, or below the minimum quality.
      *
      * @return bool
      */
     protected function guardQuality()
     {
-        if($this->guardMaxQuality() || $this->guardMinQuality()) {
+        if ($this->guardMaxQuality() || $this->guardMinQuality()) {
             return true;
         }
     }
 
     /**
-     * Returns whether it passed the SellIn days
+     * Returns whether it passed the SellIn days.
      *
      * @return bool
      */
@@ -74,7 +71,7 @@ class Item
     }
 
     /**
-     * Returns whether it is on the SellIn day
+     * Returns whether it is on the SellIn day.
      *
      * @return bool
      */
@@ -84,7 +81,7 @@ class Item
     }
 
     /**
-     * Change the SellIn days by specified amount
+     * Change the SellIn days by specified amount.
      *
      * @param $amount
      */
@@ -94,47 +91,48 @@ class Item
     }
 
     /**
-     * Changes the Quality by specified amount
+     * Changes the Quality by specified amount.
      *
      * @param $amount
      */
     protected function changeQualityBy($amount)
     {
-        if($this->guardQuality())
+        if ($this->guardQuality()) {
             return;
+        }
 
         $this->quality += $amount;
     }
 
     /**
-     * Gaurds whether the quality is below the minimum quality
+     * Gaurds whether the quality is below the minimum quality.
      *
      * @return bool
      */
     protected function guardMinQuality()
     {
-        return $this->quality <= Item::MinQuality ? true : false;
+        return $this->quality <= self::MinQuality ? true : false;
     }
 
     /**
-     * Gaurds wheter the quality is above the maximum quality
+     * Gaurds wheter the quality is above the maximum quality.
      *
      * @return bool
      */
     protected function guardMaxQuality()
     {
-        return $this->quality >= Item::MaxQuality ? true : false;
+        return $this->quality >= self::MaxQuality ? true : false;
     }
 
     /**
-     * Returns whether the SellIn is within a given amount of days
+     * Returns whether the SellIn is within a given amount of days.
      *
      * @param $days
+     *
      * @return bool
      */
     protected function isWithInDaysOfSellIn($days)
     {
         return $this->sellIn < $days ? true : false;
     }
-
 }
