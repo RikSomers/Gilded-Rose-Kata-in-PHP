@@ -4,16 +4,14 @@
  * @author Rik Somers <git@riksomers.nl>
  * Created at : 4-5-2016
  */
-
 namespace App\Item;
-
 
 use App\Item;
 
 class Conjured extends Item
 {
     /**
-     * Updates values in a tick
+     * Updates values in a tick.
      */
     public function tick()
     {
@@ -21,7 +19,8 @@ class Conjured extends Item
 
         $this->changeQualityBy(-2);
 
-        if($this->isPassedSellIn())
+        if ($this->isPassedSellIn()) {
             $this->changeQualityBy(-2);
+        }
     }
 }
